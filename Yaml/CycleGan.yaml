@@ -1,0 +1,41 @@
+#####
+name: CycleGan
+visdom: False
+port: 6022   #  port parameters
+save_root: "output"
+image_save: ""
+setname: train
+
+# lamda weight
+Adv_lamda: 1
+Cyc_lamda: 10
+VGG_lamda: 5
+Id_lamda: 5
+
+# backbone选择
+# resnet_9blocks | resnet_6blocks | unet_256 | unet_128 | CFE | baseline
+backbone: CFE
+# vgg vit mae usfm beit None
+percept: usfm
+attn_layer: None
+
+epoch: 0        # starting epoch
+n_epochs: 100       # How often do you want to display output images during training
+batchSize: 16
+dataroot: "../../USenhence2023/low2high/train"     # root directory of the dataset
+val_dataroot: "../../USenhence2023/low2high/val"
+lr: 0.0001                   # initial learning rate
+decay_epoch: 20            # epoch to start linearly decaying the learning rate to 0
+cropsize: 224             # size of the data crop
+size: 224                
+input_nc: 1         
+output_nc: 1                  
+cuda: True                
+n_cpu: 16
+grad_clip: 5
+pretrain: False
+finetune: False
+device_ids: [0]
+
+## inference
+model_root: './output/xxx/best_netG_A2B.pth'
